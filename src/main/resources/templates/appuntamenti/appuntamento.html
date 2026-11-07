@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dettaglio appuntamento</title>
+</head>
+<body>
+    <p th:if="${messaggio}" th:text="${messaggio}">Messaggio</p>
+    <div th:object="${appuntamento}">
+        <h1 th:text="*{offerta.trattamento.nome}">Trattamento</h1>
+        <p>Data: <span th:text="*{data}">2026-11-10</span> alle <span th:text="*{ora}">10:00</span></p>
+        <p>Stato: <span th:text="*{stato}">PRENOTATO</span></p>
+        <p>Tema: <span th:text="*{offerta.tema}">tema</span></p>
+        <p>Prezzo: <span th:text="${#numbers.formatDecimal(appuntamento.offerta.prezzo, 1, 2)}">0.00</span> euro</p>
+        <p th:if="*{note != null}">Note: <span th:text="*{note}">note</span></p>
+
+        <!-- Link verso le entita' collegate: dentro th:object si usa *{...} anche per offerta.trattamento.id ecc. -->
+        <p>Trattamento: <a th:href="@{/trattamenti/{id}(id=*{offerta.trattamento.id})}" th:text="*{offerta.trattamento.nome}">Trattamento</a></p>
+        <p>Operatrice: <a th:href="@{/operatrici/{id}(id=*{operatrice.id})}" th:text="*{operatrice.nome}">Operatrice</a></p>
+        <p>Evento: <a th:href="@{/eventi/{id}(id=*{offerta.evento.id})}" th:text="*{offerta.evento.nome}">Evento</a></p>
+
+        <!-- Sposta e Annulla compaiono solo alla cliente che ha prenotato (o all'admin), se e' ancora PRENOTATO -->
+        <div th:if="${puoGestire}">
+            <a th:href="@{/miei-appuntamenti/{id}/edit(id=${appuntamento.id})}">Sposta</a>
+            <form th:action="@{/miei-appuntamenti/{id}/annulla(id=${appuntamento.id})}" method="post" style="display:inline">
+                <button type="submit">Annulla</button>
+            </form>
+        </div>
+
+        <h2>Recensione</h2>
+        <div th:if="${recensione != null}">
+            <p>
+                <strong th:text="${recensione.appuntamento.utente.nome} + ' ' + ${recensione.appuntamento.utente.cognome}">Cliente</strong>
+                - voto <span th:text="${recensione.voto}">5</span>/5
+                - <span th:text="${recensione.data}">data</span>
+            </p>
+            <p th:text="${recensione.testo}">Testo</p>
+            <!-- Modifica ed elimina compaiono solo all'autrice -->
+            <div th:if="${puoModificareRecensione}">
+                <a th:href="@{/recensioni/{id}/edit(id=${recensione.id})}">Modifica</a>
+                <form th:action="@{/recensioni/{id}/elimina(id=${recensione.id})}" method="post" style="display:inline">
+                    <button type="submit">Elimina</button>
+                </form>
+            </div>
+        </div>
+        <p th:if="${recensione == null and !puoRecensire}">Nessuna recensione.</p>
+        <p th:if="${puoRecensire}">
+            <a th:href="@{/recensioni/appuntamento/{id}/new(id=${appuntamento.id})}">Scrivi una recensione</a>
+        </p>
+    </div>
+    <a href="/appuntamenti">Torna all'elenco</a>
+</body>
+</html>

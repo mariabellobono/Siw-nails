@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Evento</title>
+</head>
+<body>
+    <h1 th:text="${evento.id != null} ? 'Modifica evento' : 'Nuovo evento'">Nuovo evento</h1>
+
+    <form th:action="${evento.id != null} ? @{/admin/eventi/{id}(id=${evento.id})} : @{/admin/eventi}" th:object="${evento}" method="post">
+
+        <div>
+            <label>Nome <input type="text" th:field="*{nome}"></label>
+            <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">errore</span>
+        </div>
+
+        <div>
+            <label>Anno <input type="number" th:field="*{anno}"></label>
+            <span th:if="${#fields.hasErrors('anno')}" th:errors="*{anno}">errore</span>
+        </div>
+
+        <div>
+            <label>Città <input type="text" th:field="*{citta}"></label>
+            <span th:if="${#fields.hasErrors('citta')}" th:errors="*{citta}">errore</span>
+        </div>
+
+        <div>
+            <label>Data inizio <input type="date" th:field="*{dataInizio}"></label>
+            <span th:if="${#fields.hasErrors('dataInizio')}" th:errors="*{dataInizio}">errore</span>
+        </div>
+
+        <div>
+            <label>Data fine <input type="date" th:field="*{dataFine}"></label>
+            <span th:if="${#fields.hasErrors('dataFine')}" th:errors="*{dataFine}">errore</span>
+        </div>
+
+        <div>
+            <label>Descrizione <input type="text" th:field="*{descrizione}"></label>
+        </div>
+
+        <button type="submit">Salva</button>
+    </form>
+
+    <p><a th:href="@{/}">Torna alla Home</a></p>
+</body>
+</html>

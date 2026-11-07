@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Accedi</h1>
+
+    <!-- compare solo se l'indirizzo è /login?error=true (cioè dopo un tentativo sbagliato) -->
+    <p th:if="${param.error}">Credenziali errate</p>
+
+    <!-- compare solo se l'indirizzo è /login?registrato (cioè subito dopo una registrazione riuscita) -->
+    <p th:if="${param.registrato}">Registrazione completata: ora puoi accedere.</p>
+
+    <form th:action="@{/login}" method="post"> <!--modulo che invia i campi al server + dove invia i dati? login usando th:action -->
+        <div><label>Username <input type="text" name="username"></label></div>
+        <div><label>Password <input type="password" name="password"></label></div>
+        <button type="submit">Accedi</button>
+    </form>
+
+    <p>Non hai un account? <a href="/register">Registrati</a></p>
+    <a href="/">Torna alla Home</a>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Trattamento in un evento</title>
+</head>
+<body>
+    <h1>Aggiungi un trattamento a un evento</h1>
+
+    <form th:action="@{/admin/offerte}" th:object="${offertaForm}" method="post">
+
+        <!-- Errori generali (non legati a un campo): trattamento già presente nell'evento, ecc. -->
+        <div th:if="${#fields.hasGlobalErrors()}">
+            <p th:each="e : ${#fields.globalErrors()}" th:text="${e}">errore</p>
+        </div>
+
+        <div>
+            <label>Evento
+                <select th:field="*{eventoId}">
+                    <option value="">-- scegli un evento --</option>
+                    <option th:each="e : ${eventi}" th:value="${e.id}" th:text="${e.nome + ' ' + e.anno}">Evento</option>
+                </select>
+            </label>
+            <span th:if="${#fields.hasErrors('eventoId')}" th:errors="*{eventoId}">errore</span>
+        </div>
+
+        <div>
+            <label>Trattamento
+                <select th:field="*{trattamentoId}">
+                    <option value="">-- scegli un trattamento --</option>
+                    <option th:each="t : ${trattamenti}" th:value="${t.id}" th:text="${t.nome}">Trattamento</option>
+                </select>
+            </label>
+            <span th:if="${#fields.hasErrors('trattamentoId')}" th:errors="*{trattamentoId}">errore</span>
+        </div>
+
+        <div>
+            <label>Prezzo (euro) <input type="number" step="0.01" th:field="*{prezzo}"></label>
+            <span th:if="${#fields.hasErrors('prezzo')}" th:errors="*{prezzo}">errore</span>
+        </div>
+
+        <div>
+            <label>Tema <input type="text" th:field="*{tema}"></label>
+            <span th:if="${#fields.hasErrors('tema')}" th:errors="*{tema}">errore</span>
+        </div>
+
+        <div>
+            <label>Descrizione <input type="text" th:field="*{descrizione}"></label>
+        </div>
+
+        <button type="submit">Salva</button>
+    </form>
+
+    <p><a th:href="@{/admin}">Torna all'area admin</a></p>
+</body>
+</html>

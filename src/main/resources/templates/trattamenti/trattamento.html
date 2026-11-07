@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dettaglio trattamento</title>
+</head>
+<body>
+    <p th:if="${messaggio}" th:text="${messaggio}">Messaggio</p>
+    <div th:object="${trattamento}">
+        <h1 th:text="*{nome}">Nome</h1>
+        <p>Categoria: <span th:text="*{categoria}">Categoria</span></p>
+        <p>Durata: <span th:text="*{durata}">60</span> minuti</p>
+        <p th:text="*{descrizione}">Descrizione</p>
+
+        <h2>Dove e a che prezzo</h2>
+        <p th:if="${#lists.isEmpty(trattamento.offerte)}">Non e previsto in nessun evento.</p>
+        <ul>
+            <!-- lo stesso trattamento ha prezzo e tema diversi in eventi diversi -->
+            <li th:each="o : *{offerte}">
+                <a th:href="@{/eventi/{id}(id=${o.evento.id})}" th:text="${o.evento.nome}">Evento</a>
+                - tema <span th:text="${o.tema}">tema</span>
+                - <span th:text="${#numbers.formatDecimal(o.prezzo, 1, 2)}">0.00</span> euro
+            </li>
+        </ul>
+        <p><a th:href="@{/prenota(trattamentoId=${trattamento.id})}">Prenota questo trattamento</a></p>
+
+        <h2>Recensioni</h2>
+        <p th:if="${numeroRecensioni > 0}">
+            Voto medio <span th:text="${#numbers.formatDecimal(mediaVoti, 1, 1)}">4.5</span>/5
+            (<span th:text="${numeroRecensioni}">2</span> recensioni)
+        </p>
+        <p th:if="${#lists.isEmpty(recensioni)}">Ancora nessuna recensione.</p>
+        <!-- Le recensioni si scrivono sugli appuntamenti completati: qui si leggono soltanto -->
+        <div th:each="r : ${recensioni}">
+            <p>
+                <strong th:text="${r.appuntamento.utente.nome} + ' ' + ${r.appuntamento.utente.cognome}">Cliente</strong>
+                - voto <span th:text="${r.voto}">5</span>/5
+                - <span th:text="${r.data}">data</span>
+                - <a th:href="@{/appuntamenti/{id}(id=${r.appuntamento.id})}">appuntamento</a>
+            </p>
+            <p th:text="${r.testo}">Testo</p>
+            <hr>
+        </div>
+    </div>
+    <p th:if="${isAdmin}"><a th:href="@{/admin/trattamenti/{id}/edit(id=${trattamento.id})}">Modifica trattamento</a></p>
+    <a href="/trattamenti">Torna all'elenco</a>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Operatrici</title>
+</head>
+<body>
+    <h1>Operatrici</h1>
+    <ul>
+        <li th:each="operatrice : ${operatrici}">
+            <a th:href="@{/operatrici/{id}(id=${operatrice.id})}" th:text="${operatrice.nome}">Nome</a>
+            - <span th:text="${operatrice.specializzazione}">Specializzazione</span>
+            (<span th:text="${operatrice.oraInizio}">09:00</span> - <span th:text="${operatrice.oraFine}">17:00</span>)
+        </li>
+    </ul>
+    <a href="/">Home</a>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dettaglio operatrice</title>
+</head>
+<body>
+    <p th:if="${messaggio}" th:text="${messaggio}">Messaggio</p>
+    <div th:object="${operatrice}">
+        <h1 th:text="*{nome}">Nome</h1>
+        <p>Specializzazione: <span th:text="*{specializzazione}">Specializzazione</span></p>
+        <p>Orario di lavoro: dalle <span th:text="*{oraInizio}">09:00</span> alle <span th:text="*{oraFine}">17:00</span></p>
+
+        <h2>Appuntamenti</h2>
+        <p th:if="${#lists.isEmpty(operatrice.appuntamenti)}">Nessun appuntamento.</p>
+        <ul>
+            <li th:each="a : *{appuntamenti}">
+                <a th:href="@{/appuntamenti/{id}(id=${a.id})}"
+                   th:text="${a.data} + ' ' + ${a.ora} + ' - ' + ${a.offerta.trattamento.nome} + ' - ' + ${a.stato}">Appuntamento</a>
+            </li>
+        </ul>
+    </div>
+    <p th:if="${isAdmin}"><a th:href="@{/admin/operatrici/{id}/edit(id=${operatrice.id})}">Modifica operatrice</a></p>
+    <a href="/operatrici">Torna all'elenco</a>
+</body>
+</html>

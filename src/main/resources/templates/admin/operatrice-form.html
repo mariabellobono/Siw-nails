@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Operatrice</title>
+</head>
+<body>
+    <h1 th:text="${operatrice.id != null} ? 'Modifica operatrice' : 'Nuova operatrice'">Nuova operatrice</h1>
+
+    <form th:action="${operatrice.id != null} ? @{/admin/operatrici/{id}(id=${operatrice.id})} : @{/admin/operatrici}" th:object="${operatrice}" method="post">
+
+        <div>
+            <label>Nome <input type="text" th:field="*{nome}"></label>
+            <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">errore</span>
+        </div>
+
+        <div>
+            <label>Specializzazione <input type="text" th:field="*{specializzazione}"></label>
+            <span th:if="${#fields.hasErrors('specializzazione')}" th:errors="*{specializzazione}">errore</span>
+        </div>
+
+        <div>
+            <label>Inizio turno <input type="time" th:field="*{oraInizio}"></label>
+            <span th:if="${#fields.hasErrors('oraInizio')}" th:errors="*{oraInizio}">errore</span>
+        </div>
+
+        <div>
+            <label>Fine turno <input type="time" th:field="*{oraFine}"></label>
+            <span th:if="${#fields.hasErrors('oraFine')}" th:errors="*{oraFine}">errore</span>
+        </div>
+
+        <button type="submit">Salva</button>
+    </form>
+
+    <p><a th:href="@{/}">Torna alla Home</a></p>
+</body>
+</html>

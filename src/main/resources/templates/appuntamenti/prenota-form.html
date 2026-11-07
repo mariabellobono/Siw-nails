@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Prenota appuntamento</title>
+</head>
+<body>
+    <h1 th:text="${appuntamentoId != null} ? 'Sposta appuntamento' : 'Prenota un appuntamento'">Prenota un appuntamento</h1>
+
+    <form th:action="${appuntamentoId != null} ? @{/miei-appuntamenti/{id}(id=${appuntamentoId})} : @{/prenota}" th:object="${prenotazioneForm}" method="post">
+
+        <!-- Errori generali (non legati a un campo): operatrice occupata, fuori orario, data non valida... -->
+        <div th:if="${#fields.hasGlobalErrors()}">
+            <p th:each="e : ${#fields.globalErrors()}" th:text="${e}">errore</p>
+        </div>
+
+        <div>
+            <label>Trattamento
+                <select th:field="*{trattamentoId}">
+                    <option value="">-- scegli un trattamento --</option>
+                    <!-- si sceglie il trattamento: l'evento e il prezzo si ricavano dalla data -->
+                    <option th:each="t : ${trattamenti}" th:value="${t.id}"
+                            th:text="${t.nome + ' (' + t.durata + ' min)'}">Trattamento</option>
+                </select>
+            </label>
+            <span th:if="${#fields.hasErrors('trattamentoId')}" th:errors="*{trattamentoId}">errore</span>
+            <small>L'evento e il prezzo dipendono dalla data scelta.</small>
+        </div>
+
+        <div>
+            <label>Operatrice
+                <select th:field="*{operatriceId}">
+                    <option value="">-- scegli un'operatrice --</option>
+                    <option th:each="o : ${operatrici}" th:value="${o.id}"
+                            th:text="${o.nome + ' (' + o.oraInizio + ' - ' + o.oraFine + ')'}">Operatrice</option>
+                </select>
+            </label>
+            <span th:if="${#fields.hasErrors('operatriceId')}" th:errors="*{operatriceId}">errore</span>
+        </div>
+
+        <div>
+            <label>Data <input type="date" th:field="*{data}"></label>
+            <span th:if="${#fields.hasErrors('data')}" th:errors="*{data}">errore</span>
+        </div>
+
+        <div>
+            <label>Ora <input type="time" th:field="*{ora}"></label>
+            <span th:if="${#fields.hasErrors('ora')}" th:errors="*{ora}">errore</span>
+        </div>
+
+        <div>
+            <label>Note <input type="text" th:field="*{note}"></label>
+        </div>
+
+        <button type="submit">Salva</button>
+    </form>
+
+    <p><a th:href="@{/}">Torna alla Home</a></p>
+</body>
+</html>

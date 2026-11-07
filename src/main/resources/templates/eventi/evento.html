@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dettaglio evento</title>
+</head>
+<body>
+    <p th:if="${messaggio}" th:text="${messaggio}">Messaggio</p>
+    <div th:object="${evento}">
+        <h1 th:text="*{nome}">Nome</h1>
+        <p><span th:text="*{citta}">Citta</span>, <span th:text="*{anno}">2026</span></p>
+        <p>Dal <span th:text="*{dataInizio}">data</span> al <span th:text="*{dataFine}">data</span></p>
+        <p th:text="*{descrizione}">Descrizione</p>
+
+        <h2>Trattamenti in questo evento</h2>
+        <p th:if="${#lists.isEmpty(evento.offerte)}">Nessun trattamento previsto.</p>
+        <ul>
+            <!-- ogni offerta e' un trattamento con il prezzo e il tema di QUESTO evento -->
+            <li th:each="o : *{offerte}">
+                <a th:href="@{/trattamenti/{id}(id=${o.trattamento.id})}" th:text="${o.trattamento.nome}">Trattamento</a>
+                - tema <span th:text="${o.tema}">tema</span>
+                - <span th:text="${#numbers.formatDecimal(o.prezzo, 1, 2)}">0.00</span> euro
+                <form th:if="${isAdmin}" th:action="@{/admin/offerte/{id}/elimina(id=${o.id})}" method="post" style="display:inline">
+                    <button type="submit">Togli dall'evento</button>
+                </form>
+            </li>
+        </ul>
+        <p th:if="${isAdmin}">
+            <a th:href="@{/admin/offerte/new(eventoId=${evento.id})}">Aggiungi un trattamento</a> |
+            <a th:href="@{/admin/eventi/{id}/edit(id=${evento.id})}">Modifica evento</a>
+        </p>
+
+        <h2>Agenda degli appuntamenti</h2>
+        <p th:if="${#lists.isEmpty(appuntamenti)}">Nessun appuntamento prenotato.</p>
+        <ul>
+            <li th:each="a : ${appuntamenti}">
+                <a th:href="@{/appuntamenti/{id}(id=${a.id})}"
+                   th:text="${a.data} + ' ' + ${a.ora} + ' - ' + ${a.offerta.trattamento.nome} + ' - ' + ${a.operatrice.nome} + ' - ' + ${a.stato}">Appuntamento</a>
+            </li>
+        </ul>
+    </div>
+    <a href="/eventi">Torna all'elenco</a>
+</body>
+</html>

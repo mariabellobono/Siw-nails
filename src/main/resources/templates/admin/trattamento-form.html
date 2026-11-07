@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Trattamento</title>
+</head>
+<body>
+    <h1 th:text="${trattamento.id != null} ? 'Modifica trattamento' : 'Nuovo trattamento'">Nuovo trattamento</h1>
+
+    <form th:action="${trattamento.id != null} ? @{/admin/trattamenti/{id}(id=${trattamento.id})} : @{/admin/trattamenti}" th:object="${trattamento}" method="post">
+
+        <div>
+            <label>Nome <input type="text" th:field="*{nome}"></label>
+            <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">errore</span>
+        </div>
+
+        <div>
+            <label>Categoria <input type="text" th:field="*{categoria}"></label>
+            <span th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}">errore</span>
+        </div>
+
+        <div>
+            <label>Durata (minuti) <input type="number" th:field="*{durata}"></label>
+            <span th:if="${#fields.hasErrors('durata')}" th:errors="*{durata}">errore</span>
+        </div>
+
+        <div>
+            <label>Descrizione <input type="text" th:field="*{descrizione}"></label>
+        </div>
+
+        <button type="submit">Salva</button>
+    </form>
+
+    <p><a th:href="@{/}">Torna alla Home</a></p>
+</body>
+</html>
