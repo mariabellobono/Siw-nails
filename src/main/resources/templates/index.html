@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>NAIL STUDIO</title>
+</head>
+<body>
+    <h1>Nail Studio</h1>
+    <a href="/eventi">Eventi</a>
+    <a href="/trattamenti">Trattamenti</a>
+    <a href="/operatrici">Operatrici</a>
+    <a href="/appuntamenti">Agenda</a>
+    <a href="/app/">Versione React</a>
+
+    <!-- Funzioni per le clienti loggate e per l'admin -->
+    <p th:if="${userDetails != null}">
+        <a href="/prenota">Prenota</a>
+        <a href="/miei-appuntamenti">I miei appuntamenti</a>
+    </p>
+    <p th:if="${isAdmin}"><a href="/admin">Area amministratore</a></p>
+
+    <!-- Se NON sei loggata -->
+    <p th:if="${userDetails == null}">
+        <a href="/login">Accedi</a> | <a href="/register">Registrati</a>
+    </p>
+
+    <!-- Se sei loggata -->
+    <div th:if="${userDetails != null}">
+        <p>Ciao, <span th:text="${userDetails.username}">utente</span></p>
+        <form th:action="@{/logout}" method="post">
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+</body>
+</html>

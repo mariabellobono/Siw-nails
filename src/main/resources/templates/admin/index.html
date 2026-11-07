@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Area amministratore</title>
+</head>
+<body>
+    <h1>Area amministratore</h1>
+
+    <!-- Ogni link porta al modulo di inserimento di una entità.
+         @{...} fa aggiungere a Thymeleaf il contesto dell'applicazione davanti all'URL -->
+    <ul>
+        <li><a th:href="@{/admin/eventi/new}">Inserisci un nuovo evento</a></li>
+        <li><a th:href="@{/admin/trattamenti/new}">Inserisci un nuovo trattamento</a></li>
+        <li><a th:href="@{/admin/operatrici/new}">Inserisci una nuova operatrice</a></li>
+        <li><a th:href="@{/admin/offerte/new}">Aggiungi un trattamento a un evento</a></li>
+    </ul>
+
+    <p><a th:href="@{/}">Torna alla home</a></p>
+</body>
+</html>
