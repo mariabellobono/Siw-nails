@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Agenda</title>
+</head>
+<body>
+    <h1>Agenda degli appuntamenti</h1>
+    <ul>
+        <!-- Trattamento, evento e operatrice sono oggetti collegati: si scende con il punto (appuntamento.offerta.trattamento.nome) -->
+        <li th:each="appuntamento : ${appuntamenti}">
+            <a th:href="@{/appuntamenti/{id}(id=${appuntamento.id})}"
+               th:text="${appuntamento.data} + ' ' + ${appuntamento.ora}">Data e ora</a>
+            - <span th:text="${appuntamento.offerta.trattamento.nome}">Trattamento</span>
+            (<span th:text="${appuntamento.operatrice.nome}">Operatrice</span>,
+            <span th:text="${appuntamento.offerta.evento.nome}">Evento</span>)
+            - <span th:text="${appuntamento.stato}">Stato</span>
+        </li>
+    </ul>
+    <a href="/">Home</a>
+</body>
+</html>

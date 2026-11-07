@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">  <!--DICHIARAZIONE PER UTILIZZARE THYMELEAF-->
+<head>
+    <meta charset="UTF-8">
+    <title>Eventi</title>
+</head>
+<body>
+    <h1>Eventi</h1>
+    <ul>
+        <!-- ripete il <li> una volta per ogni evento della lista "eventi" (messa nel Model dal controller) -->
+        <li th:each="evento : ${eventi}">
+            <a th:href="@{/eventi/{id}(id=${evento.id})}" th:text="${evento.nome}">Nome</a>
+            - <span th:text="${evento.citta}">Citta</span>
+            (dal <span th:text="${evento.dataInizio}">data</span> al <span th:text="${evento.dataFine}">data</span>)
+        </li>
+    </ul>
+    <a href="/">Home</a>
+</body>
+</html>

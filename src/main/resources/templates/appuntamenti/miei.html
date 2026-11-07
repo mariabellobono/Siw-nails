@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>I miei appuntamenti</title>
+</head>
+<body>
+    <h1>I miei appuntamenti</h1>
+    <p th:if="${#lists.isEmpty(appuntamenti)}">Non hai ancora appuntamenti.</p>
+    <ul>
+        <li th:each="a : ${appuntamenti}">
+            <a th:href="@{/appuntamenti/{id}(id=${a.id})}" th:text="${a.data} + ' ' + ${a.ora}">Data e ora</a>
+            - <span th:text="${a.offerta.trattamento.nome}">Trattamento</span>
+            (<span th:text="${a.operatrice.nome}">Operatrice</span>, <span th:text="${a.offerta.evento.nome}">Evento</span>)
+            - <span th:text="${a.stato}">Stato</span>
+        </li>
+    </ul>
+    <p><a th:href="@{/prenota}">Prenota un nuovo appuntamento</a></p>
+    <a th:href="@{/}">Home</a>
+</body>
+</html>

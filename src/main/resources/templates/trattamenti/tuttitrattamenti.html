@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Trattamenti</title>
+</head>
+<body>
+    <h1>Trattamenti</h1>
+    <ul>
+        <li th:each="trattamento : ${trattamenti}">
+            <a th:href="@{/trattamenti/{id}(id=${trattamento.id})}" th:text="${trattamento.nome}">Nome</a>
+            - <span th:text="${trattamento.categoria}">Categoria</span>
+            (<span th:text="${trattamento.durata}">60</span> min)
+        </li>
+    </ul>
+    <a href="/">Home</a>
+</body>
+</html>
