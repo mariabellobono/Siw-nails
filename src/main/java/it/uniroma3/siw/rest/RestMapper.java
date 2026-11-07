@@ -27,14 +27,14 @@ final class RestMapper {
 
 	static EventoDto evento(Evento e) {
 		return new EventoDto(e.getId(), e.getNome(), e.getAnno(), e.getCitta(), e.getDataInizio(), e.getDataFine(),
-				e.getDescrizione());
+				e.getDescrizione(), e.getPercorsoImmagine());
 	}
 
 	// l'evento deve arrivare con le offerte gia' caricate (EventoService.findById)
 	static EventoDettaglioDto eventoDettaglio(Evento e) {
 		List<OffertaDto> offerte = e.getOfferte().stream().map(RestMapper::offerta).toList();
 		return new EventoDettaglioDto(e.getId(), e.getNome(), e.getAnno(), e.getCitta(), e.getDataInizio(),
-				e.getDataFine(), e.getDescrizione(), offerte);
+				e.getDataFine(), e.getDescrizione(), e.getPercorsoImmagine(), offerte);
 	}
 
 	static OffertaDto offerta(Offerta o) {

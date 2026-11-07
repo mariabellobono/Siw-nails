@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Foglia d'autunno">
+  <circle cx="100" cy="100" r="96" fill="#3a213a" stroke="#ff4f8b" stroke-width="4"/>
+  <path d="M100 38 C 154 68, 162 122, 100 160 C 38 122, 46 68, 100 38 Z" fill="#e8913a"/>
+  <g stroke="#3a213a" stroke-width="4" stroke-linecap="round" fill="none">
+    <line x1="100" y1="58" x2="100" y2="176"/>
+    <polyline points="100,90 124,74"/><polyline points="100,90 76,74"/>
+    <polyline points="100,116 130,98"/><polyline points="100,116 70,98"/>
+    <polyline points="100,140 118,128"/><polyline points="100,140 82,128"/>
+  </g>
+</svg>

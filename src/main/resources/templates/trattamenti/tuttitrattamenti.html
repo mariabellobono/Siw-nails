@@ -2,9 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <title>Trattamenti</title>
 </head>
 <body>
+    <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+    <main>
     <h1>Trattamenti</h1>
     <ul>
         <li th:each="trattamento : ${trattamenti}">
@@ -14,5 +17,6 @@
         </li>
     </ul>
     <a href="/">Home</a>
+</main>
 </body>
 </html>

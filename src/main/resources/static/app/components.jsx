@@ -77,9 +77,12 @@ function ListaEventi() {
       <Errore messaggio={errore} />
       {!eventi && !errore && <p>Caricamento...</p>}
       {eventi && eventi.map((e) => (
-        <div className="card" key={e.id}>
-          <a href={'#/eventi/' + e.id}><b>{e.nome}</b> ({e.anno})</a>
-          <div className="piccolo">{e.citta} &middot; dal {e.dataInizio} al {e.dataFine}</div>
+        <div className="card evento-riga" key={e.id}>
+          <img className="simbolo" src={e.immagine} alt="" />
+          <div>
+            <a href={'#/eventi/' + e.id}><b>{e.nome}</b> ({e.anno})</a>
+            <div className="piccolo">{e.citta} &middot; dal {e.dataInizio} al {e.dataFine}</div>
+          </div>
         </div>
       ))}
     </div>
@@ -127,6 +130,7 @@ function DettaglioEvento({ id }) {
     <div>
       <p><a href="#/">&larr; Tutti gli eventi</a></p>
       <div className="card">
+        <img className="simbolo grande" src={evento.immagine} alt="" />
         <h1>{evento.nome} <span className="piccolo">({evento.anno})</span></h1>
         <p>{evento.citta} &middot; dal {evento.dataInizio} al {evento.dataFine}</p>
         <p>{evento.descrizione}</p>

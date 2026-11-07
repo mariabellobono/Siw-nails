@@ -2,11 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <title>ERRORE 403</title>
 </head>
 <body>
+    <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+    <main>
     <h1>Accesso non consentito</h1>
     <p>Non hai i permessi per vedere questa pagina: è riservata agli amministratori.</p>
     <a th:href="@{/}">Torna alla Home</a>
+</main>
 </body>
 </html>

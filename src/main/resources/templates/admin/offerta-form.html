@@ -2,9 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <title>Trattamento in un evento</title>
 </head>
 <body>
+    <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+    <main>
     <h1>Aggiungi un trattamento a un evento</h1>
 
     <form th:action="@{/admin/offerte}" th:object="${offertaForm}" method="post">
@@ -52,5 +55,6 @@
     </form>
 
     <p><a th:href="@{/admin}">Torna all'area admin</a></p>
+</main>
 </body>
 </html>

@@ -2,9 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <title>Evento</title>
 </head>
 <body>
+    <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+    <main>
     <h1 th:text="${evento.id != null} ? 'Modifica evento' : 'Nuovo evento'">Nuovo evento</h1>
 
     <form th:action="${evento.id != null} ? @{/admin/eventi/{id}(id=${evento.id})} : @{/admin/eventi}" th:object="${evento}" method="post">
@@ -38,9 +41,22 @@
             <label>Descrizione <input type="text" th:field="*{descrizione}"></label>
         </div>
 
+        <div>
+            <label>Simbolo
+                <select th:field="*{immagine}">
+                    <option value="">Goccia (predefinito)</option>
+                    <option value="roma.svg">Archi di Roma</option>
+                    <option value="natale.svg">Fiocco di neve</option>
+                    <option value="autunno.svg">Foglia</option>
+                    <option value="primavera.svg">Fiore</option>
+                </select>
+            </label>
+        </div>
+
         <button type="submit">Salva</button>
     </form>
 
     <p><a th:href="@{/}">Torna alla Home</a></p>
+</main>
 </body>
 </html>

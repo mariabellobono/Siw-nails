@@ -2,9 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <title>Prenota appuntamento</title>
 </head>
 <body>
+    <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+    <main>
     <h1 th:text="${appuntamentoId != null} ? 'Sposta appuntamento' : 'Prenota un appuntamento'">Prenota un appuntamento</h1>
 
     <form th:action="${appuntamentoId != null} ? @{/miei-appuntamenti/{id}(id=${appuntamentoId})} : @{/prenota}" th:object="${prenotazioneForm}" method="post">
@@ -56,5 +59,6 @@
     </form>
 
     <p><a th:href="@{/}">Torna alla Home</a></p>
+</main>
 </body>
 </html>

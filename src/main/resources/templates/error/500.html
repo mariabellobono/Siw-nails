@@ -2,12 +2,16 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <title>Errore</title>
 </head>
 <body>
+    <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+    <main>
     <h1>500 - Si e' verificato un errore</h1>
     <!-- Pagina statica (niente Thymeleaf): non deve poter dare errore a sua volta. -->
     <p>Qualcosa e' andato storto. Riprova tra poco.</p>
     <a href="/">Torna alla Home</a>
+</main>
 </body>
 </html>

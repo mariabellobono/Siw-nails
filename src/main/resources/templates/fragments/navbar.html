@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <!-- Barra di navigazione condivisa: ogni pagina la richiama con
+         <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+         userDetails e isAdmin arrivano da GlobalController (valgono null se non c'e' nessuno collegato). -->
+    <nav class="navbar" th:fragment="navbar">
+        <a class="marchio" th:href="@{/}">MC NAILS</a>
+        <div class="menu">
+            <a th:href="@{/eventi}">Eventi</a>
+            <a th:href="@{/trattamenti}">Trattamenti</a>
+            <a th:href="@{/operatrici}">Operatrici</a>
+            <a th:href="@{/appuntamenti}">Agenda</a>
+            <a th:href="@{/app/}">Versione React</a>
+        </div>
+        <div class="accesso">
+            <th:block th:if="${userDetails != null}">
+                <a th:href="@{/prenota}">Prenota</a>
+                <a th:href="@{/miei-appuntamenti}">I miei appuntamenti</a>
+                <a th:if="${isAdmin}" th:href="@{/admin}">Admin</a>
+                <span class="utente" th:text="${userDetails.username}">utente</span>
+                <form th:action="@{/logout}" method="post">
+                    <button type="submit">Esci</button>
+                </form>
+            </th:block>
+            <th:block th:if="${userDetails == null}">
+                <a th:href="@{/login}">Accedi</a>
+                <a class="evidenza" th:href="@{/register}">Registrati</a>
+            </th:block>
+        </div>
+    </nav>
+</body>
+</html>

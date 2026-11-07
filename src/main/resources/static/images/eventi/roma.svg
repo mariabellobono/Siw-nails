@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Archi di Roma">
+  <circle cx="100" cy="100" r="96" fill="#3a213a" stroke="#ff4f8b" stroke-width="4"/>
+  <rect x="38" y="62" width="124" height="8" rx="2" fill="#ff9ec0"/>
+  <rect x="42" y="70" width="116" height="78" fill="#ff4f8b"/>
+  <g fill="#3a213a">
+    <path d="M50 96v-10a7 7 0 0 1 14 0v10z"/><path d="M71 96v-10a7 7 0 0 1 14 0v10z"/><path d="M92 96v-10a7 7 0 0 1 14 0v10z"/><path d="M113 96v-10a7 7 0 0 1 14 0v10z"/><path d="M134 96v-10a7 7 0 0 1 14 0v10z"/>
+    <path d="M50 124v-10a7 7 0 0 1 14 0v10z"/><path d="M71 124v-10a7 7 0 0 1 14 0v10z"/><path d="M92 124v-10a7 7 0 0 1 14 0v10z"/><path d="M113 124v-10a7 7 0 0 1 14 0v10z"/><path d="M134 124v-10a7 7 0 0 1 14 0v10z"/>
+    <path d="M50 148v-10a7 7 0 0 1 14 0v10z"/><path d="M71 148v-10a7 7 0 0 1 14 0v10z"/><path d="M92 148v-10a7 7 0 0 1 14 0v10z"/><path d="M113 148v-10a7 7 0 0 1 14 0v10z"/><path d="M134 148v-10a7 7 0 0 1 14 0v10z"/>
+  </g>
+  <rect x="38" y="148" width="124" height="8" rx="2" fill="#ff9ec0"/>
+</svg>

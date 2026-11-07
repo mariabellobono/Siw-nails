@@ -37,6 +37,9 @@ public class Evento extends EntitaBase {
 
 	private String descrizione;
 
+	// Nome del file del simbolo dell'evento, dentro static/images/eventi (es. "natale.svg"). Facoltativo.
+	private String immagine;
+
 	// I trattamenti dell'evento NON sono una semplice lista di Trattamento: ogni trattamento, in ogni evento,
 	// ha un prezzo e un tema suoi. Per questo la relazione e' una classe, Offerta (come Interpretazione nel festival).
 	// Lista inizializzata: cosi' un oggetto creato con "new" ha una lista pronta e non null.
@@ -89,6 +92,20 @@ public class Evento extends EntitaBase {
 
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
+	}
+
+	public String getImmagine() {
+		return immagine;
+	}
+
+	public void setImmagine(String immagine) {
+		this.immagine = immagine;
+	}
+
+	// Indirizzo completo dell'immagine da mostrare: se l'evento non ne ha una si usa il simbolo di default.
+	// Non e' un campo del database, e' calcolato.
+	public String getPercorsoImmagine() {
+		return "/images/eventi/" + ((immagine == null || immagine.isBlank()) ? "default.svg" : immagine);
 	}
 
 	public List<Offerta> getOfferte() {

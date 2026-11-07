@@ -2,9 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <title>Dettaglio appuntamento</title>
 </head>
 <body>
+    <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+    <main>
     <p th:if="${messaggio}" th:text="${messaggio}">Messaggio</p>
     <div th:object="${appuntamento}">
         <h1 th:text="*{offerta.trattamento.nome}">Trattamento</h1>
@@ -20,9 +23,9 @@
         <p>Evento: <a th:href="@{/eventi/{id}(id=*{offerta.evento.id})}" th:text="*{offerta.evento.nome}">Evento</a></p>
 
         <!-- Sposta e Annulla compaiono solo alla cliente che ha prenotato (o all'admin), se e' ancora PRENOTATO -->
-        <div th:if="${puoGestire}">
+        <div class="azioni" th:if="${puoGestire}">
             <a th:href="@{/miei-appuntamenti/{id}/edit(id=${appuntamento.id})}">Sposta</a>
-            <form th:action="@{/miei-appuntamenti/{id}/annulla(id=${appuntamento.id})}" method="post" style="display:inline">
+            <form th:action="@{/miei-appuntamenti/{id}/annulla(id=${appuntamento.id})}" method="post">
                 <button type="submit">Annulla</button>
             </form>
         </div>
@@ -36,9 +39,9 @@
             </p>
             <p th:text="${recensione.testo}">Testo</p>
             <!-- Modifica ed elimina compaiono solo all'autrice -->
-            <div th:if="${puoModificareRecensione}">
+            <div class="azioni" th:if="${puoModificareRecensione}">
                 <a th:href="@{/recensioni/{id}/edit(id=${recensione.id})}">Modifica</a>
-                <form th:action="@{/recensioni/{id}/elimina(id=${recensione.id})}" method="post" style="display:inline">
+                <form th:action="@{/recensioni/{id}/elimina(id=${recensione.id})}" method="post">
                     <button type="submit">Elimina</button>
                 </form>
             </div>
@@ -49,5 +52,6 @@
         </p>
     </div>
     <a href="/appuntamenti">Torna all'elenco</a>
+</main>
 </body>
 </html>

@@ -24,7 +24,7 @@ public final class ApiDto {
 	// ---------- RISPOSTE (cosa esce dall'API) ----------
 
 	public record EventoDto(Long id, String nome, Integer anno, String citta, LocalDate dataInizio,
-			LocalDate dataFine, String descrizione) {
+			LocalDate dataFine, String descrizione, String immagine) {
 	}
 
 	// Un trattamento in un evento, con prezzo e tema di QUELL'evento
@@ -33,7 +33,7 @@ public final class ApiDto {
 	}
 
 	public record EventoDettaglioDto(Long id, String nome, Integer anno, String citta, LocalDate dataInizio,
-			LocalDate dataFine, String descrizione, List<OffertaDto> offerte) {
+			LocalDate dataFine, String descrizione, String immagine, List<OffertaDto> offerte) {
 	}
 
 	public record TrattamentoDto(Long id, String nome, String categoria, Integer durata, String descrizione) {

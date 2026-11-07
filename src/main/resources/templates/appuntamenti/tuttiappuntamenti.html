@@ -2,9 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <title>Agenda</title>
 </head>
 <body>
+    <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+    <main>
     <h1>Agenda degli appuntamenti</h1>
     <ul>
         <!-- Trattamento, evento e operatrice sono oggetti collegati: si scende con il punto (appuntamento.offerta.trattamento.nome) -->
@@ -18,5 +21,6 @@
         </li>
     </ul>
     <a href="/">Home</a>
+</main>
 </body>
 </html>

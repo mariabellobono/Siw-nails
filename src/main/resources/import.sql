@@ -7,10 +7,10 @@
 -- ==========================================================================
 
 -- 1. EVENTI (1 passato, 2 in corso, 1 futuro)
-insert into evento (id, nome, anno, citta, data_inizio, data_fine, descrizione) values (nextval('evento_seq'), 'Nail Week Roma', 2026, 'Roma', '2026-09-14', '2026-09-20', 'Una settimana di nail art tra i toni neutri e il bianco');
-insert into evento (id, nome, anno, citta, data_inizio, data_fine, descrizione) values (nextval('evento_seq'), 'Natale in Rosso', 2026, 'Milano', '2026-11-02', '2026-12-24', 'Colori, glitter e decorazioni natalizie');
-insert into evento (id, nome, anno, citta, data_inizio, data_fine, descrizione) values (nextval('evento_seq'), 'Autunno in Gel', 2026, 'Torino', '2026-10-26', '2026-11-30', 'Le tinte calde della stagione in versione gel');
-insert into evento (id, nome, anno, citta, data_inizio, data_fine, descrizione) values (nextval('evento_seq'), 'Primavera in Fiore', 2027, 'Firenze', '2027-03-15', '2027-03-21', 'Fiori, pastelli e french colorate');
+insert into evento (id, nome, anno, citta, data_inizio, data_fine, descrizione, immagine) values (nextval('evento_seq'), 'Nail Week Roma', 2026, 'Roma', '2026-09-14', '2026-09-20', 'Una settimana di nail art tra i toni neutri e il bianco', 'roma.svg');
+insert into evento (id, nome, anno, citta, data_inizio, data_fine, descrizione, immagine) values (nextval('evento_seq'), 'Natale in Rosso', 2026, 'Milano', '2026-11-02', '2026-12-24', 'Colori, glitter e decorazioni natalizie', 'natale.svg');
+insert into evento (id, nome, anno, citta, data_inizio, data_fine, descrizione, immagine) values (nextval('evento_seq'), 'Autunno in Gel', 2026, 'Torino', '2026-10-26', '2026-11-30', 'Le tinte calde della stagione in versione gel', 'autunno.svg');
+insert into evento (id, nome, anno, citta, data_inizio, data_fine, descrizione, immagine) values (nextval('evento_seq'), 'Primavera in Fiore', 2027, 'Firenze', '2027-03-15', '2027-03-21', 'Fiori, pastelli e french colorate', 'primavera.svg');
 
 -- 2. TRATTAMENTI (nome, categoria, durata in minuti)
 insert into trattamento (id, nome, categoria, durata, descrizione) values (nextval('trattamento_seq'), 'Manicure classica', 'Manicure', 45, 'Cura delle mani e smalto tradizionale');

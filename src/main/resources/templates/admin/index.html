@@ -2,9 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <title>Area amministratore</title>
 </head>
 <body>
+    <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+    <main>
     <h1>Area amministratore</h1>
 
     <!-- Ogni link porta al modulo di inserimento di una entità.
@@ -17,5 +20,6 @@
     </ul>
 
     <p><a th:href="@{/}">Torna alla home</a></p>
+</main>
 </body>
 </html>

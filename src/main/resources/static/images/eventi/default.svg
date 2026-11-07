@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Goccia di smalto">
+  <circle cx="100" cy="100" r="96" fill="#3a213a" stroke="#ff4f8b" stroke-width="4"/>
+  <path d="M100 36 C 100 36, 150 96, 150 126 a50 50 0 0 1 -100 0 C 50 96 100 36 100 36 Z" fill="#ff4f8b"/>
+  <ellipse cx="82" cy="128" rx="8" ry="16" fill="#ff9ec0" transform="rotate(20 82 128)"/>
+</svg>

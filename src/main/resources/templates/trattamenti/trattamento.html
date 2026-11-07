@@ -2,9 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <title>Dettaglio trattamento</title>
 </head>
 <body>
+    <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+    <main>
     <p th:if="${messaggio}" th:text="${messaggio}">Messaggio</p>
     <div th:object="${trattamento}">
         <h1 th:text="*{nome}">Nome</h1>
@@ -44,5 +47,6 @@
     </div>
     <p th:if="${isAdmin}"><a th:href="@{/admin/trattamenti/{id}/edit(id=${trattamento.id})}">Modifica trattamento</a></p>
     <a href="/trattamenti">Torna all'elenco</a>
+</main>
 </body>
 </html>

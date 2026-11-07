@@ -47,6 +47,7 @@ public class EventoService {
 		evento.setDataInizio(dati.getDataInizio());
 		evento.setDataFine(dati.getDataFine());
 		evento.setDescrizione(dati.getDescrizione());
+		evento.setImmagine(dati.getImmagine());
 		return this.eventoRepository.save(evento);
 	}
 }

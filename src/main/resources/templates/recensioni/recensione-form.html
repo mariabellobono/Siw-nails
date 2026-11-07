@@ -2,9 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <title>Recensione</title>
 </head>
 <body>
+    <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+    <main>
     <h1 th:text="${recensione.id != null} ? 'Modifica la recensione' : 'Scrivi una recensione'">Recensione</h1>
     <p>Appuntamento: <span th:text="${appuntamento.offerta.trattamento.nome}">Trattamento</span>
        del <span th:text="${appuntamento.data}">data</span></p>
@@ -27,5 +30,6 @@
     </form>
 
     <p><a th:href="@{/appuntamenti/{id}(id=${appuntamento.id})}">Torna all'appuntamento</a></p>
+</main>
 </body>
 </html>

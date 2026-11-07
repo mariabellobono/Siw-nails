@@ -2,11 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <title>Dettaglio evento</title>
 </head>
 <body>
+    <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+    <main>
     <p th:if="${messaggio}" th:text="${messaggio}">Messaggio</p>
     <div th:object="${evento}">
+        <img class="simbolo grande" th:src="@{${evento.percorsoImmagine}}" alt="">
         <h1 th:text="*{nome}">Nome</h1>
         <p><span th:text="*{citta}">Citta</span>, <span th:text="*{anno}">2026</span></p>
         <p>Dal <span th:text="*{dataInizio}">data</span> al <span th:text="*{dataFine}">data</span></p>
@@ -40,5 +44,6 @@
         </ul>
     </div>
     <a href="/eventi">Torna all'elenco</a>
+</main>
 </body>
 </html>

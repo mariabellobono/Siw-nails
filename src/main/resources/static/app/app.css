@@ -24,6 +24,9 @@ button:disabled { opacity: .5; cursor: default; }
 .badge { display: inline-block; background: var(--rosa-chiaro); border-radius: 12px; padding: 2px 10px; margin-right: 6px; font-size: 13px; }
 .voto { font-weight: 700; color: #b8860b; }
 .prezzo { font-weight: 700; color: var(--rosa); }
+.simbolo { width: 64px; height: 64px; flex: none; }
+.simbolo.grande { display: block; width: 120px; height: 120px; margin-bottom: 8px; }
+.evento-riga { display: flex; align-items: center; gap: 16px; }
 .annullato { opacity: .55; }
 table { width: 100%; border-collapse: collapse; background: #fff; }
 th, td { text-align: left; padding: 8px; border-bottom: 1px solid #ecd5e0; }

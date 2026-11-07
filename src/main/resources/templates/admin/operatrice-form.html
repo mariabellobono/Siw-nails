@@ -2,9 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <title>Operatrice</title>
 </head>
 <body>
+    <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+    <main>
     <h1 th:text="${operatrice.id != null} ? 'Modifica operatrice' : 'Nuova operatrice'">Nuova operatrice</h1>
 
     <form th:action="${operatrice.id != null} ? @{/admin/operatrici/{id}(id=${operatrice.id})} : @{/admin/operatrici}" th:object="${operatrice}" method="post">
@@ -33,5 +36,6 @@
     </form>
 
     <p><a th:href="@{/}">Torna alla Home</a></p>
+</main>
 </body>
 </html>

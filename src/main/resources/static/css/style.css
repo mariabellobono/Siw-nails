@@ -1,0 +1,250 @@
+/* ==========================================================
+   MC NAILS - foglio di stile del sito classico (tema scuro)
+   Per cambiare l'aspetto basta cambiare i colori qui sotto.
+   ========================================================== */
+:root {
+  --fondo: #1c0f1b;        /* sfondo pagina */
+  --superficie: #2b1829;   /* righe, riquadri, moduli */
+  --superficie-alta: #3a213a; /* hover */
+  --bordo: #4d2f4a;
+  --rosa: #ff4f8b;         /* colore principale: pulsanti, strisce */
+  --rosa-chiaro: #ff9ec0;  /* link */
+  --oro: #e8b86a;          /* dettagli (prezzi, voti) */
+  --testo: #f5e9f0;
+  --testo-tenue: #c3a6b8;
+  --errore: #ff8a8a;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background-color: var(--fondo);
+  /* puntini molto leggeri, come la superficie di un'unghia lucida */
+  background-image: radial-gradient(rgba(255, 79, 139, .10) 1px, transparent 1px);
+  background-size: 22px 22px;
+  color: var(--testo);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+main {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 28px 18px 60px;
+}
+
+/* ---------- barra di navigazione (fragments/navbar.html) ---------- */
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 22px;
+  padding: 12px 24px;
+  background: #130a12;
+  border-bottom: 3px solid var(--rosa);
+}
+.navbar a { color: var(--testo); font-weight: 700; letter-spacing: .4px; }
+.navbar a:hover { color: var(--rosa-chiaro); text-decoration: none; }
+.navbar .marchio { margin-right: 10px; color: var(--rosa); font-size: 1.35rem; letter-spacing: 1.5px; text-transform: uppercase; }
+.navbar .menu, .navbar .accesso { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 18px; }
+.navbar .accesso { margin-left: auto; font-size: 15px; }
+.navbar .utente { color: var(--testo-tenue); font-style: italic; }
+.navbar form { margin: 0; }
+.navbar button { padding: 4px 14px; font-size: 14px; background: transparent; border: 1px solid var(--rosa); color: var(--rosa-chiaro); }
+.navbar button:hover { background: var(--rosa); color: #fff; }
+.navbar .evidenza { padding: 4px 14px; border-radius: 20px; background: var(--rosa); color: #fff; }
+.navbar .evidenza:hover { color: #fff; background: #e03a75; }
+
+/* ---------- titoli ---------- */
+h1 {
+  margin: 0 0 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--bordo);
+  color: #fff;
+  font-size: 2.1rem;
+  letter-spacing: .5px;
+}
+/* una goccia di smalto prima di ogni titolo principale */
+h1::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 12px;
+  background: var(--rosa);
+  border-radius: 50% 0 50% 50%;
+  transform: rotate(-45deg);
+}
+h2 { margin: 30px 0 12px; color: var(--rosa-chiaro); font-size: 1.3rem; }
+
+/* ---------- link ---------- */
+a { color: var(--rosa-chiaro); text-decoration: none; }
+a:hover { color: #fff; text-decoration: underline; }
+
+/* i collegamenti messi da soli in fondo alla pagina ("Torna alla Home", "Home") */
+main > a { display: inline-block; margin: 6px 16px 0 0; font-weight: 700; }
+
+/* ---------- liste: ogni voce e' una riga con una striscia rosa ---------- */
+ul { list-style: none; margin: 0 0 18px; padding: 0; }
+li {
+  margin-bottom: 10px;
+  padding: 12px 16px;
+  background: var(--superficie);
+  border: 1px solid var(--bordo);
+  border-left: 5px solid var(--rosa);
+  border-radius: 6px;
+  transition: transform .15s ease, background .15s ease;
+}
+li:hover { background: var(--superficie-alta); transform: translateX(4px); }
+
+p { margin: 0 0 12px; }
+
+/* ---------- moduli ---------- */
+form { margin-bottom: 18px; }
+form > div { margin-bottom: 14px; }
+label { display: inline-block; font-weight: 700; color: var(--rosa-chiaro); }
+input[type="text"], input[type="password"], input[type="email"], input[type="number"],
+input[type="date"], input[type="time"], select, textarea {
+  display: block;
+  width: 100%;
+  max-width: 440px;
+  margin-top: 5px;
+  padding: 9px 11px;
+  border: 1px solid var(--bordo);
+  border-radius: 5px;
+  background: #170b16;
+  color: var(--testo);
+  font: inherit;
+  color-scheme: dark; /* calendario e orologio scuri */
+}
+input:focus, select:focus, textarea:focus { outline: 2px solid var(--rosa); outline-offset: 1px; }
+textarea { min-height: 100px; }
+
+button {
+  padding: 9px 20px;
+  border: 0;
+  border-radius: 5px;
+  background: var(--rosa);
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .15s ease, transform .1s ease;
+}
+button:hover { background: #e03a75; }
+button:active { transform: scale(.97); }
+
+/* il pulsante dentro una riga di lista (per esempio "Elimina") resta piccolo */
+li button { padding: 3px 11px; font-size: 14px; background: #5b3a58; }
+li button:hover { background: #7a4a76; }
+
+/* ---------- messaggi ed errori ---------- */
+form span { color: var(--errore); font-size: 14px; }
+form p { color: var(--errore); }
+small { display: block; margin-top: 4px; color: var(--testo-tenue); font-size: 14px; }
+
+/* ---------- tabelle ---------- */
+table { width: 100%; border-collapse: collapse; background: var(--superficie); }
+th, td { padding: 9px 12px; border-bottom: 1px solid var(--bordo); text-align: left; }
+th { background: #130a12; color: var(--rosa-chiaro); }
+
+/* ---------- home: presentazione e riquadri ---------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 8px;
+  padding: 70px 32px 56px;
+  /* foto delle unghie come sfondo, con uno strato scuro a sinistra per leggere il testo */
+  background: linear-gradient(90deg, rgba(28, 15, 27, .94) 0%, rgba(28, 15, 27, .75) 50%, rgba(28, 15, 27, .1) 100%),
+              url("../images/unghie.jpg") center / cover no-repeat;
+  border: 1px solid var(--bordo);
+  border-radius: 10px;
+}
+.hero h1 { border: 0; font-size: 2.8rem; }
+.hero h1::before { display: none; }
+.hero .sottotitolo { max-width: 460px; color: var(--testo-tenue); font-size: 1.1rem; }
+.hero > * { position: relative; z-index: 1; }
+
+/* il nostro studio: foto e testo affiancati */
+.studio {
+  display: grid;
+  grid-template-columns: minmax(180px, 280px) 1fr;
+  gap: 28px;
+  align-items: center;
+  margin: 28px 0 8px;
+}
+.studio img {
+  display: block;
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+  border: 1px solid var(--bordo);
+  border-radius: 10px;
+}
+.studio h2 { margin-top: 0; }
+
+.pulsante {
+  display: inline-block;
+  margin: 6px 12px 6px 0;
+  padding: 11px 24px;
+  border-radius: 28px;
+  background: var(--rosa);
+  color: #fff;
+  font-weight: 700;
+}
+.pulsante:hover { background: #e03a75; color: #fff; text-decoration: none; }
+.pulsante.secondario { background: transparent; border: 2px solid var(--rosa); color: var(--rosa-chiaro); }
+.pulsante.secondario:hover { background: var(--rosa); color: #fff; }
+
+.riquadri { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; margin-bottom: 24px; }
+.riquadro {
+  display: block;
+  padding: 18px;
+  background: var(--superficie);
+  border: 1px solid var(--bordo);
+  border-top: 4px solid var(--rosa);
+  border-radius: 8px;
+  color: var(--testo);
+  transition: transform .15s ease, background .15s ease;
+}
+.riquadro strong { display: block; margin-bottom: 4px; color: #fff; font-size: 1.15rem; }
+.riquadro span { color: var(--testo-tenue); font-size: 15px; }
+.riquadro:hover { background: var(--superficie-alta); transform: translateY(-4px); text-decoration: none; }
+
+/* coppie di azioni (Sposta/Annulla, Modifica/Elimina): stessa forma, stessa importanza */
+.azioni { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 14px 0 20px; }
+.azioni form { margin: 0; }
+.azioni a, .azioni button {
+  display: inline-block;
+  padding: 9px 22px;
+  border: 2px solid var(--rosa);
+  border-radius: 5px;
+  background: transparent;
+  color: var(--rosa-chiaro);
+  font: inherit;
+  font-weight: 700;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background .15s ease, color .15s ease;
+}
+.azioni a:hover, .azioni button:hover { background: var(--rosa); color: #fff; text-decoration: none; }
+
+/* simbolo dell'evento */
+.simbolo { width: 64px; height: 64px; flex: none; }
+.simbolo.grande { display: block; width: 120px; height: 120px; margin-bottom: 12px; }
+li.con-immagine { display: flex; align-items: center; gap: 16px; }
+
+hr { border: 0; border-top: 1px solid var(--bordo); margin: 22px 0; }
+
+@media (max-width: 560px) {
+  .navbar { padding: 10px 14px; }
+  .navbar .accesso { margin-left: 0; }
+  main { padding: 18px 12px 40px; }
+  h1 { font-size: 1.7rem; }
+  .hero { padding: 40px 18px 32px; background-position: 70% center; }
+  .hero h1 { font-size: 2.1rem; }
+  .studio { grid-template-columns: 1fr; }
+  .studio img { height: 240px; }
+}

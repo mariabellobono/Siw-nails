@@ -2,9 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <title>I miei appuntamenti</title>
 </head>
 <body>
+    <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+    <main>
     <h1>I miei appuntamenti</h1>
     <p th:if="${#lists.isEmpty(appuntamenti)}">Non hai ancora appuntamenti.</p>
     <ul>
@@ -17,5 +20,6 @@
     </ul>
     <p><a th:href="@{/prenota}">Prenota un nuovo appuntamento</a></p>
     <a th:href="@{/}">Home</a>
+</main>
 </body>
 </html>

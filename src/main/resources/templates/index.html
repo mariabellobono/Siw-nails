@@ -2,34 +2,47 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>NAIL STUDIO</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>MC NAILS</title>
 </head>
 <body>
-    <h1>Nail Studio</h1>
-    <a href="/eventi">Eventi</a>
-    <a href="/trattamenti">Trattamenti</a>
-    <a href="/operatrici">Operatrici</a>
-    <a href="/appuntamenti">Agenda</a>
-    <a href="/app/">Versione React</a>
+    <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+    <main>
+        <!-- presentazione: la foto delle unghie e' lo sfondo (vedi .hero nel CSS) -->
+        <section class="hero">
+            <h1>MC NAILS</h1>
+            <p class="sottotitolo">Eventi a tema, trattamenti curati e operatrici che conoscono il tuo stile.
+                Scegli il trattamento, scegli il giorno e prenota il tuo appuntamento.</p>
+            <p>
+                <a class="pulsante" th:href="@{/trattamenti}">Scopri i trattamenti</a>
+                <a class="pulsante secondario" th:href="@{/eventi}">Vedi gli eventi</a>
+            </p>
+        </section>
 
-    <!-- Funzioni per le clienti loggate e per l'admin -->
-    <p th:if="${userDetails != null}">
-        <a href="/prenota">Prenota</a>
-        <a href="/miei-appuntamenti">I miei appuntamenti</a>
-    </p>
-    <p th:if="${isAdmin}"><a href="/admin">Area amministratore</a></p>
+        <!-- il nostro studio: foto a sinistra, testo a destra -->
+        <section class="studio">
+            <img th:src="@{/images/salone.jpg}" alt="Il nostro studio">
+            <div>
+                <h2>Il nostro studio</h2>
+                <p>Una postazione luminosa, centinaia di colori a portata di mano e il tempo giusto per ogni trattamento.
+                    Dalla manicure semplice alle decorazioni dei nostri eventi a tema: scegli quello che ti somiglia.</p>
+                <p><a class="pulsante" th:href="@{/operatrici}">Conosci le operatrici</a></p>
+            </div>
+        </section>
 
-    <!-- Se NON sei loggata -->
-    <p th:if="${userDetails == null}">
-        <a href="/login">Accedi</a> | <a href="/register">Registrati</a>
-    </p>
+        <h2>Esplora</h2>
+        <div class="riquadri">
+            <a class="riquadro" th:href="@{/eventi}"><strong>Eventi</strong><span>Periodi a tema con trattamenti e prezzi dedicati</span></a>
+            <a class="riquadro" th:href="@{/trattamenti}"><strong>Trattamenti</strong><span>Durata, categoria e recensioni delle clienti</span></a>
+            <a class="riquadro" th:href="@{/operatrici}"><strong>Operatrici</strong><span>Chi lavora da noi e i suoi orari</span></a>
+            <a class="riquadro" th:href="@{/appuntamenti}"><strong>Agenda</strong><span>Gli appuntamenti in programma</span></a>
+        </div>
 
-    <!-- Se sei loggata -->
-    <div th:if="${userDetails != null}">
-        <p>Ciao, <span th:text="${userDetails.username}">utente</span></p>
-        <form th:action="@{/logout}" method="post">
-            <button type="submit">Logout</button>
-        </form>
-    </div>
+        <!-- Funzioni per le clienti loggate e per l'admin -->
+        <p th:if="${userDetails != null}">Ciao, <strong th:text="${userDetails.username}">utente</strong>:
+            <a th:href="@{/prenota}">prenota un appuntamento</a> oppure
+            <a th:href="@{/miei-appuntamenti}">guarda i tuoi appuntamenti</a>.</p>
+        <p th:if="${userDetails == null}"><a th:href="@{/login}">Accedi</a> o <a th:href="@{/register}">registrati</a> per prenotare.</p>
+    </main>
 </body>
 </html>

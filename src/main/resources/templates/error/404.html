@@ -2,13 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 	<title> ERRORE 404 </title>
 	</head>
 	<body>
+    <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+    <main>
 		        <h1> Pagina non trovata</h1>
 		        
 		        <p th:text = "${messaggio}"> </p>
 		    <a th:href="@{/}">Torna alla Home</a>
-		</body>
+		</main>
+</body>
 		</html>
 		
