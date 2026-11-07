@@ -37,12 +37,15 @@ Utenti di prova:
 | `admin` | `admin` | ADMIN |
 | `utente1` | `utente1` | USER |
 | `utente2` | `utente1` | USER |
+| `utente3`, `utente4`, `utente5` | `utente1` | USER |
+
+Dati di prova (`import.sql`): 8 eventi (passati, in corso e futuri), 14 trattamenti, 7 operatrici, 46 offerte, 32 appuntamenti (prenotati, completati e annullati), 12 recensioni e 6 utenti. Servono per avere conteggi e ordinamenti con un po' di dati. Alcuni appuntamenti completati di `utente1` non hanno ancora la recensione, cosi' si puo' provare a scriverla.
 
 ## Modello di dominio
 
 ```mermaid
 classDiagram
-    class Evento { nome; anno; citta; dataInizio; dataFine; descrizione }
+    class Evento { nome; anno; citta; dataInizio; dataFine; descrizione; immagine }
     class Trattamento { nome; categoria; durata (min); descrizione }
     class Offerta { prezzo; tema; descrizione }
     class Operatrice { nome; specializzazione; oraInizio; oraFine }
@@ -62,6 +65,7 @@ classDiagram
 
 Scelte principali:
 
+- **Evento** ha un **simbolo** (campo `immagine`, nome di un file SVG in `static/images/eventi`). Se manca, `getPercorsoImmagine()` restituisce la goccia predefinita. Il simbolo si sceglie nel modulo admin dell'evento ed e' mostrato nelle pagine del sito, in React e nelle API.
 - **Offerta**: la relazione Evento-Trattamento e' molti-a-molti e ha dati suoi (prezzo e tema cambiano da evento a evento).
   Una semplice `@ManyToMany` non puo' contenerli, quindi la relazione e' una classe con due `@ManyToOne`.
   La coppia (evento, trattamento) e' unica. Il prezzo e' un `BigDecimal` (tipo corretto per i soldi).
@@ -131,6 +135,8 @@ Le API restituiscono JSON e usano i codici HTTP: `200` ok, `201` creato (con hea
 
 Sicurezza: due `SecurityFilterChain`, una per `/api/**` (risponde in JSON con 401/403) e una per il sito. La sessione e' la stessa
 del sito; le richieste che modificano dati richiedono il token CSRF (cookie `XSRF-TOKEN`, header `X-XSRF-TOKEN`).
+
+Gli eventi, nelle API, hanno anche il campo `immagine` (indirizzo del simbolo).
 
 Il frontend React (`/app/`) usa solo le API: elenco di eventi, trattamenti e operatrici, agenda, prenotazione, spostamento,
 annullamento e recensioni degli appuntamenti completati, con accesso dal modulo in alto.
